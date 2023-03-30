@@ -7,6 +7,10 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatRippleModule } from "@angular/material/core";
+import {
+  MAT_SNACK_BAR_DEFAULT_OPTIONS,
+  MatSnackBarModule,
+} from "@angular/material/snack-bar";
 
 @NgModule({
   declarations: [],
@@ -19,6 +23,7 @@ import { MatRippleModule } from "@angular/material/core";
     MatIconModule,
     MatDialogModule,
     MatRippleModule,
+    MatSnackBarModule,
   ],
   exports: [
     MatFormFieldModule,
@@ -28,6 +33,18 @@ import { MatRippleModule } from "@angular/material/core";
     MatIconModule,
     MatDialogModule,
     MatRippleModule,
+    MatSnackBarModule,
+  ],
+
+  providers: [
+    {
+      provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+      useValue: {
+        duration: 3000,
+        horizontalPosition: "right",
+        verticalPosition: "bottom",
+      },
+    },
   ],
 })
 export class MaterialModule {}

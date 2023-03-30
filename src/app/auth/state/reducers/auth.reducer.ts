@@ -50,5 +50,23 @@ export const reducer = createReducer(
     ...state,
     isLoggedIn: false,
     user: null,
+  })),
+  on(AuthActions.getAllUsers, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(AuthActions.getUpdatedUsers, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(AuthActions.getAllUsersSuccess, (state, { users }) => ({
+    ...state,
+    isLoading: false,
+    allUsers: users,
+  })),
+  on(AuthActions.getAllUsersFailure, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error,
   }))
 );
