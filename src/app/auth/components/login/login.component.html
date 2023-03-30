@@ -1,12 +1,9 @@
-<div
-  style="width: 400px"
-  class="bg-light shadow-lg rounded text-center pt-5 p-2"
->
+<div class="bg-white shadow-lg rounded text-center p-3">
   <img
     src="assets/images/polling.png"
     alt="polling"
     class="image overflow-hidden rounded"
-    style="height: 100px; width: 100px"
+    style="height: 150px; width: 150px"
   />
 
   <h2 style="font-size: 2rem" class="mt-2 mb-3">Polling!</h2>
@@ -17,10 +14,20 @@
   ></mat-form-field>
   <button
     style="font-size: 1.2rem; margin-top: -15px"
-    class="w-100 p-4 fs"
+    class="w-100 p-4"
     mat-raised-button
     color="primary"
   >
     Login
+  </button>
+  <app-special-text text="OR"></app-special-text>
+  <button
+    style="font-size: 1.2rem"
+    class="w-100 p-4"
+    mat-raised-button
+    color="accent"
+    routerLink="/sign-up"
+  >
+    Create New Account
   </button>
 </div>

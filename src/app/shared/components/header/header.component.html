@@ -2,28 +2,37 @@
   <div class="container py-2">
     <nav class="d-flex align-items-center justify-content-start">
       <div class="brand">
-        <a class="btn text-white d-flex align-items-center" routerLink="/home">
+        <a
+          class="btn text-white d-flex align-items-center me-4 ps-0"
+          routerLink="/home"
+        >
           <img
             src="assets/images/polling-icon.png"
             alt="logo"
-            class="me-2 p-0"
-            style="width: 20px; height: 20px"
+            class="me-1 p-0"
+            style="width: 25px; height: 25px"
           />
-          <h2 class="m-0 p-0">Polling!</h2></a
+          <h2 style="font-size: 1.5rem" class="m-0 p-0">Polling!</h2></a
         >
       </div>
       <div class="links d-flex justify-content-between align-items-center">
-        <a class="btn btn-dark" routerLink="/home" routerLinkActive="active"
+        <a
+          mat-button
+          class="btn btn-dark text-white"
+          routerLink="/home"
+          routerLinkActive="active"
           >Home</a
         >
         <a
-          class="btn btn-dark"
+          mat-button
+          class="btn btn-dark text-white"
           routerLink="/new-question"
           routerLinkActive="active"
           >New Question</a
         >
         <a
-          class="btn btn-dark"
+          mat-button
+          class="btn btn-dark text-white"
           routerLink="/leaderboard"
           routerLinkActive="active"
           >LeaderBoard</a

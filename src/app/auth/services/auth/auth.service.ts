@@ -3,22 +3,27 @@ import * as db from "../../../db/_DATA.js";
 import { from, map } from "rxjs";
 import { User } from "../../models/user.js";
 
+type UsersData = Promise<{ [userId: string]: User }>;
+
 @Injectable({
   providedIn: "root",
 })
 export class AuthService {
-  isLoggedIn = false;
   constructor() {}
 
   login() {}
 
   getUserById(id: string) {
-    return from<Promise<{ [userId: string]: User }>>(db._getUsers()).pipe(
-      map((users) => users[id])
-    );
+    return from<UsersData>(db._getUsers()).pipe(map((users) => users[id]));
   }
 
   getAllUsers() {
-    return from<Promise<{ [userId: string]: User }>>(db._getUsers());
+    return from<UsersData>(db._getUsers()).pipe(
+      map((users) => {
+        let _users: User[] = [];
+        for (let id in users) _users.push(users[id]);
+        return _users;
+      })
+    );
   }
 }

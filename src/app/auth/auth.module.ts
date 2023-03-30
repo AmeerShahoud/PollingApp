@@ -7,6 +7,10 @@ import { LoginPageComponent } from "./pages/login-page/login-page.component";
 import { LoginComponent } from "./components/login/login.component";
 import { SignupComponent } from "./components/signup/signup.component";
 import { MaterialModule } from "../material/material.module";
+import { SharedModule } from "../shared/shared.module";
+import { ReactiveFormsModule } from "@angular/forms";
+import { StoreModule } from "@ngrx/store";
+import * as fromAuth from "./state/reducers/auth.reducer";
 
 @NgModule({
   declarations: [
@@ -15,6 +19,13 @@ import { MaterialModule } from "../material/material.module";
     LoginComponent,
     SignupComponent,
   ],
-  imports: [CommonModule, MaterialModule, AuthRoutingModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MaterialModule,
+    SharedModule,
+    AuthRoutingModule,
+    StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
+  ],
 })
 export class AuthModule {}
