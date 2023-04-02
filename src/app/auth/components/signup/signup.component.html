@@ -18,7 +18,7 @@
     <div class="row gx-2 mt-2 justify-content-center align-items-start">
       <mat-form-field class="col-md-6 col-12" appearance="outline"
         ><mat-label>First Name</mat-label>
-        <input formControlName="firstName" type="text" matInput />
+        <input appAutoFocus formControlName="firstName" type="text" matInput />
         <mat-error *ngIf="firstName.hasError('required')"
           >First Name is required</mat-error
         >

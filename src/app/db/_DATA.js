@@ -128,6 +128,15 @@ export function _getUsers() {
   });
 }
 
+export function _addUser(user) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      users = { ...users, ...user };
+      res(user);
+    }, 2000);
+  });
+}
+
 export function _getQuestions() {
   return new Promise((res, rej) => {
     setTimeout(() => res({ ...questions }), 1000);
@@ -200,6 +209,6 @@ export function _saveQuestionAnswer({ authedUser, qid, answer }) {
       };
 
       res();
-    }, 500);
+    }, 1000);
   });
 }

@@ -11,6 +11,10 @@ import {
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
   MatSnackBarModule,
 } from "@angular/material/snack-bar";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 @NgModule({
   declarations: [],
@@ -24,6 +28,10 @@ import {
     MatDialogModule,
     MatRippleModule,
     MatSnackBarModule,
+    MatProgressBarModule,
+    MatTabsModule,
+    MatButtonToggleModule,
+    MatTooltipModule,
   ],
   exports: [
     MatFormFieldModule,
@@ -34,6 +42,10 @@ import {
     MatDialogModule,
     MatRippleModule,
     MatSnackBarModule,
+    MatProgressBarModule,
+    MatTabsModule,
+    MatButtonToggleModule,
+    MatTooltipModule,
   ],
 
   providers: [

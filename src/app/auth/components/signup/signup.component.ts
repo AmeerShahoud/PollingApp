@@ -1,8 +1,10 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
+import { Store } from "@ngrx/store";
 import { Subject, Subscription, takeUntil } from "rxjs";
 import { AvatarAlbumComponent } from "src/app/shared/components/avatar-album/avatar-album.component";
+import * as AuthActions from "../../state/actions/auth.actions";
 
 @Component({
   selector: "app-signup",
@@ -11,7 +13,7 @@ import { AvatarAlbumComponent } from "src/app/shared/components/avatar-album/ava
 })
 export class SignupComponent implements OnDestroy {
   avatarUrl?: string;
-  destroySubscriptions = new Subject();
+  private destroySubscriptions = new Subject();
 
   signUpForm = this.fb.nonNullable.group({
     firstName: ["", [Validators.required, Validators.pattern(/[a-zA-z]+/g)]],
@@ -26,7 +28,11 @@ export class SignupComponent implements OnDestroy {
     return this.signUpForm.controls.lastName;
   }
 
-  constructor(private fb: FormBuilder, private dialog: MatDialog) {}
+  constructor(
+    private store: Store,
+    private fb: FormBuilder,
+    private dialog: MatDialog
+  ) {}
 
   openAvatarDialog() {
     this.dialog
@@ -45,6 +51,13 @@ export class SignupComponent implements OnDestroy {
       this.signUpForm.markAsTouched();
       return;
     }
+    this.store.dispatch(
+      AuthActions.signUp({
+        firstName: this.firstName.value,
+        lastName: this.lastName.value,
+        avatarUrl: this.avatarUrl ?? "",
+      })
+    );
   }
 
   ngOnDestroy(): void {

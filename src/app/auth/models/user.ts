@@ -2,6 +2,6 @@ export interface User {
   id: string;
   name: string;
   avatarURL: string;
-  answers: { [answerId: string]: string };
+  answers: { [questionsId: string]: "optionOne" | "optionTwo" };
   questions: string[];
 }

@@ -5,7 +5,8 @@ import { HeaderComponent } from "./components/header/header.component";
 import { SpecialTextComponent } from "./components/special-text/special-text.component";
 import { MaterialModule } from "../material/material.module";
 import { ImgPlaceholderDirective } from "./directives/img-placeholder.directive";
-import { AvatarAlbumComponent } from './components/avatar-album/avatar-album.component';
+import { AvatarAlbumComponent } from "./components/avatar-album/avatar-album.component";
+import { AutoFocusDirective } from "./directives/auto-focus.directive";
 
 @NgModule({
   declarations: [
@@ -13,8 +14,14 @@ import { AvatarAlbumComponent } from './components/avatar-album/avatar-album.com
     SpecialTextComponent,
     ImgPlaceholderDirective,
     AvatarAlbumComponent,
+    AutoFocusDirective,
   ],
   imports: [CommonModule, MaterialModule, RouterModule],
-  exports: [HeaderComponent, SpecialTextComponent, ImgPlaceholderDirective],
+  exports: [
+    HeaderComponent,
+    SpecialTextComponent,
+    ImgPlaceholderDirective,
+    AutoFocusDirective,
+  ],
 })
 export class SharedModule {}

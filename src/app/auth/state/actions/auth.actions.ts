@@ -18,7 +18,7 @@ export const loginFailure = createAction(
 
 export const signUp = createAction(
   "[SignUp Page] SignUp",
-  props<{ user: User }>()
+  props<{ firstName: string; lastName: string; avatarUrl: string }>()
 );
 
 export const signUpSuccess = createAction(
@@ -32,10 +32,9 @@ export const signUpFailure = createAction(
 );
 
 export const logout = createAction("[Logout Header] Logout");
+export const logoutSuccess = createAction("[Logout Effect] Logout Success");
 
-export const getAllUsers = createAction("[Login Component] Get Users");
-
-export const getUpdatedUsers = createAction("[SignUp Effect] Get Users");
+export const getAllUsers = createAction("[Root Component] Get Users");
 
 export const getAllUsersSuccess = createAction(
   "[GetUsers Effect] Get Users Success",

@@ -28,6 +28,7 @@ export const reducer = createReducer(
     isLoading: false,
     user,
     isLoggedIn: true,
+    error: null,
   })),
   on(AuthActions.loginFailure, (state, { error }) => ({
     ...state,
@@ -40,13 +41,14 @@ export const reducer = createReducer(
     isLoading: false,
     user,
     isLoggedIn: true,
+    error: null,
   })),
   on(AuthActions.signUpFailure, (state, { error }) => ({
     ...state,
     isLoading: false,
     error,
   })),
-  on(AuthActions.logout, (state) => ({
+  on(AuthActions.logoutSuccess, (state) => ({
     ...state,
     isLoggedIn: false,
     user: null,
@@ -55,14 +57,12 @@ export const reducer = createReducer(
     ...state,
     isLoading: true,
   })),
-  on(AuthActions.getUpdatedUsers, (state) => ({
-    ...state,
-    isLoading: true,
-  })),
+
   on(AuthActions.getAllUsersSuccess, (state, { users }) => ({
     ...state,
     isLoading: false,
     allUsers: users,
+    error: null,
   })),
   on(AuthActions.getAllUsersFailure, (state, { error }) => ({
     ...state,
