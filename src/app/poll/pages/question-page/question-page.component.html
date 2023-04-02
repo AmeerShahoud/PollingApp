@@ -1,9 +1,9 @@
 <mat-progress-bar
-  *ngIf="isLoading$ | async"
+  *ngIf="isLoading"
   color="warn"
   mode="indeterminate"
 ></mat-progress-bar>
-<ng-container *ngIf="!(isLoading$ | async)">
+<ng-container *ngIf="!isLoading">
   <ng-container *ngIf="!(error$ | async); else questionNotFound">
     <div class="container">
       <div class="row justify-content-center py-5 m-0">

@@ -1,10 +1,10 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { PollState, pollFeatureKey } from "../reducers/poll.reducer";
-import * as AuthSelectors from "src/app/auth/state/selectors/auth.selectors";
 import { User } from "src/app/auth/models/user";
+import * as AuthSelectors from "src/app/auth/state/selectors/auth.selectors";
 import { AuthorQuestion } from "../../models/author-question";
 import { Question } from "../../models/question";
 import { UserScore } from "../../models/user-score";
+import { PollState, pollFeatureKey } from "../reducers/poll.reducer";
 
 export const selectPollFeature =
   createFeatureSelector<PollState>(pollFeatureKey);
@@ -47,6 +47,7 @@ export const selectSelectedAuthorQuestion = createSelector(
   AuthSelectors.selectAllUsers,
   (question, users) => {
     if (question) {
+      // console.log(question);
       const _authorUser = users.find(
         (user) => user.id === question.author
       ) as User;
@@ -86,6 +87,7 @@ export const selectUsersScores = createSelector(
 
 function _getauthorQuestions(isAnswered: boolean) {
   return (user: User | null, users: User[], questions: Question[]) => {
+    // console.log(questions);
     if (user) {
       const _questions = questions
         .filter((question) => {

@@ -68,5 +68,21 @@ export const reducer = createReducer(
     ...state,
     isLoading: false,
     error,
+  })),
+  on(AuthActions.updateUserPollData, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+
+  on(AuthActions.updateUserPollDataSuccess, (state, { updatedUserData }) => ({
+    ...state,
+    isLoading: false,
+    user: updatedUserData,
+    error: null,
+  })),
+  on(AuthActions.updateUserPollDataFailure, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error,
   }))
 );

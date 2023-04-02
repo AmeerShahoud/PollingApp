@@ -92,6 +92,25 @@ export class AuthEffects implements OnDestroy {
     )
   );
 
+  updateUserPollDataEffect = createEffect(() =>
+    this.actions$.pipe(
+      ofType(AuthActions.updateUserPollData),
+      mergeMap(() =>
+        this.authService.updateUserPollData().pipe(
+          map((updatedUserData) =>
+            AuthActions.updateUserPollDataSuccess({ updatedUserData })
+          ),
+          catchError((err) => {
+            this.snackBar.open(err.message);
+            return of(
+              AuthActions.updateUserPollDataFailure({ error: err.message })
+            );
+          })
+        )
+      )
+    )
+  );
+
   ngOnDestroy(): void {
     this.destroySubscriptions.complete();
   }

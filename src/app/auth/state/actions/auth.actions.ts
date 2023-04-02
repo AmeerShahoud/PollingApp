@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { User } from "../../models/user";
+import { User, UserPollData } from "../../models/user";
 
 export const login = createAction(
   "[Login Page] Login",
@@ -43,5 +43,19 @@ export const getAllUsersSuccess = createAction(
 
 export const getAllUsersFailure = createAction(
   "[GetUsers Effect] Get Users Failure",
+  props<{ error: string }>()
+);
+
+export const updateUserPollData = createAction(
+  "[UpdateUserAnswers Effect] UpdateUserAnswers"
+);
+
+export const updateUserPollDataSuccess = createAction(
+  "[UpdateUserAnswers Effect] UpdateUserAnswers Success",
+  props<{ updatedUserData: User }>()
+);
+
+export const updateUserPollDataFailure = createAction(
+  "[UpdateUserAnswers Effect] UpdateUserAnswers Failure",
   props<{ error: string }>()
 );

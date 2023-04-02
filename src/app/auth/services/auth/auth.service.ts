@@ -1,15 +1,25 @@
-import { Injectable } from "@angular/core";
-import { from, map, of, switchMap, throwError } from "rxjs";
+import { Injectable, OnDestroy } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { Subject, from, map, of, switchMap, takeUntil, throwError } from "rxjs";
 import * as db from "../../../db/_DATA.js";
-import { User } from "../../models/user.js";
+import { User, UserPollData } from "../../models/user.js";
+import * as AuthSelectors from "../../state/selectors/auth.selectors";
 
 type UsersData = { [userId: string]: User };
 
 @Injectable({
   providedIn: "root",
 })
-export class AuthService {
-  constructor() {}
+export class AuthService implements OnDestroy {
+  private _userId!: string;
+  private destroySubscriptions = new Subject();
+
+  constructor(private store: Store) {
+    this.store
+      .select(AuthSelectors.selectUser)
+      .pipe(takeUntil(this.destroySubscriptions))
+      .subscribe((user) => (this._userId = user?.id ?? ""));
+  }
 
   login(userId: string) {
     return this.getUserById(userId).pipe(
@@ -48,6 +58,10 @@ export class AuthService {
     );
   }
 
+  updateUserPollData = () => {
+    return this.getUserById(this._userId);
+  };
+
   private _formatUserData(
     firstName: string,
     lastName: string,
@@ -68,5 +82,9 @@ export class AuthService {
     };
 
     return { id: _userId, userData: _user };
+  }
+
+  ngOnDestroy(): void {
+    this.destroySubscriptions.complete();
   }
 }

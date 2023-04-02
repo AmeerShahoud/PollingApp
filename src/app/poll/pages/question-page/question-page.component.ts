@@ -1,18 +1,17 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Store } from "@ngrx/store";
-import * as PollSelectors from "../../state/selectors/poll.selectors";
 import { ActivatedRoute } from "@angular/router";
-import { Subject, takeUntil } from "rxjs";
+import { Store } from "@ngrx/store";
+import { Subject, combineLatest, takeUntil } from "rxjs";
 import * as PollActions from "../../state/actions/poll.actions";
-import { AuthorQuestion } from "../../models/author-question";
-
+import * as PollSelectors from "../../state/selectors/poll.selectors";
+import * as AuthSelectors from "../../../auth/state/selectors/auth.selectors";
 @Component({
   selector: "app-question-page",
   templateUrl: "./question-page.component.html",
   styleUrls: ["./question-page.component.css"],
 })
 export class QuestionPageComponent implements OnInit, OnDestroy {
-  isLoading$ = this.store.select(PollSelectors.selectIsLoading);
+  isLoading = false;
   error$ = this.store.select(PollSelectors.selectError);
   selectedAuthorQuestion$ = this.store.select(
     PollSelectors.selectSelectedAuthorQuestion
@@ -30,8 +29,17 @@ export class QuestionPageComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroySubscriptions))
       .subscribe((params) => {
         const questionId = params.get("id")!;
-        this.store.dispatch(PollActions.SelectQuestion({ questionId }));
+        this.store.dispatch(PollActions.selectQuestion({ questionId }));
       });
+
+    combineLatest(
+      this.store.select(PollSelectors.selectIsLoading),
+      this.store.select(AuthSelectors.selectIsLoading)
+    )
+      .pipe(takeUntil(this.destroySubscriptions))
+      .subscribe(
+        (isLoading) => (this.isLoading = isLoading[0] || isLoading[1])
+      );
   }
 
   ngOnDestroy() {

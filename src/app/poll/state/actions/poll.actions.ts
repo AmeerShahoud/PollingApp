@@ -13,7 +13,7 @@ export const getQuestionsFailure = createAction(
   props<{ error: string }>()
 );
 
-export const SelectQuestion = createAction(
+export const selectQuestion = createAction(
   "[Home Page] SelectQuestion",
   props<{ questionId: string }>()
 );
@@ -25,5 +25,24 @@ export const selectQuestionSuccess = createAction(
 
 export const selectQuestionFailure = createAction(
   "[SelectQuestion Effect] SelectQuestion Failure",
+  props<{ error: string }>()
+);
+
+export const saveQuestionAnswer = createAction(
+  "[Question Page] SaveQuestionAnswer",
+  props<{
+    authedUserId: string;
+    questionId: string;
+    answer: "optionOne" | "optionTwo";
+  }>()
+);
+
+export const saveQuestionAnswerSuccess = createAction(
+  "[SaveQuestion Effect] SaveQuestionAnswer Success",
+  props<{ questionId: string }>()
+);
+
+export const saveQuestionAnswerFailure = createAction(
+  "[SaveQuestion Effect] SaveQuestionAnswer Failure",
   props<{ error: string }>()
 );

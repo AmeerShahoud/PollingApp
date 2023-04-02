@@ -31,7 +31,7 @@ export const reducer = createReducer(
     isLoading: false,
     error,
   })),
-  on(PollActions.SelectQuestion, (state) => ({ ...state, isLoading: true })),
+  on(PollActions.selectQuestion, (state) => ({ ...state, isLoading: true })),
   on(PollActions.selectQuestionSuccess, (state, { selectedQuestion }) => ({
     ...state,
     isLoading: false,
@@ -39,6 +39,20 @@ export const reducer = createReducer(
     selectedQuestion,
   })),
   on(PollActions.selectQuestionFailure, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error,
+  })),
+  on(PollActions.saveQuestionAnswer, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(PollActions.saveQuestionAnswerSuccess, (state) => ({
+    ...state,
+    isLoading: false,
+    error: null,
+  })),
+  on(PollActions.saveQuestionAnswerFailure, (state, { error }) => ({
     ...state,
     isLoading: false,
     error,
