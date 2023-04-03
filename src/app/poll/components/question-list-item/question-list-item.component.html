@@ -3,11 +3,11 @@
     style="font-size: 1.3rem; font-weight: bold"
     class="heading mat-bg-accent p-3 text-start mb-0"
   >
-    <ng-container
-      *ngIf="(user$ | async)?.id == authorQuestion.author.id; else notAuthor"
-      >You Ask:</ng-container
-    >
-    <ng-template #notAuthor>{{ authorQuestion.author.name }} Asks:</ng-template>
+    {{
+      (user$ | async)?.id == authorQuestion.author.id
+        ? "You Ask:"
+        : authorQuestion.author.name + " Asks:"
+    }}
   </h2>
   <div class="content row justify-content-between align-items-center p-3">
     <div class="avatar col-4">

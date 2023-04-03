@@ -38,11 +38,25 @@ export const saveQuestionAnswer = createAction(
 );
 
 export const saveQuestionAnswerSuccess = createAction(
-  "[SaveQuestion Effect] SaveQuestionAnswer Success",
+  "[SaveQuestionAnswer Effect] SaveQuestionAnswer Success",
   props<{ questionId: string }>()
 );
 
 export const saveQuestionAnswerFailure = createAction(
-  "[SaveQuestion Effect] SaveQuestionAnswer Failure",
+  "[SaveQuestionAnswer Effect] SaveQuestionAnswer Failure",
+  props<{ error: string }>()
+);
+
+export const addQuestion = createAction(
+  "[NewQestion Page] addQuestion",
+  props<{ optionOneText: string; optionTwoText: string; authorId: string }>()
+);
+
+export const addQuestionSuccess = createAction(
+  "[addQuestion Effect] AddQuestion Success"
+);
+
+export const addQuestionFailure = createAction(
+  "[addQuestion Effect] AddQuestion Failure",
   props<{ error: string }>()
 );

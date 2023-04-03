@@ -46,16 +46,16 @@ export const getAllUsersFailure = createAction(
   props<{ error: string }>()
 );
 
-export const getUpdatedUserPollData = createAction(
-  "[updateUserPollData Effect] updateUserPollData"
+export const getUpdatedUsersPollData = createAction(
+  "[updateUsersPollData Effect] updateUsersPollData"
 );
 
-export const getUpdatedUserPollDataSuccess = createAction(
-  "[getUpdatedUserPollData Effect] getUpdatedUserPollData Success",
-  props<{ updatedUserData: User }>()
+export const getUpdatedUsersPollDataSuccess = createAction(
+  "[getUpdatedUsersPollData Effect] getUpdatedUsersPollData Success",
+  props<{ updatedUsersData: User[] }>()
 );
 
-export const getUpdatedUserPollDataFailure = createAction(
-  "[getUpdatedUserPollData Effect] getUpdatedUserPollData Failure",
+export const getUpdatedUsersPollDataFailure = createAction(
+  "[getUpdatedUsersPollData Effect] getUpdatedUsersPollData Failure",
   props<{ error: string }>()
 );

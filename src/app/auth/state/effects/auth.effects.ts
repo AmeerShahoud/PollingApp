@@ -94,16 +94,16 @@ export class AuthEffects implements OnDestroy {
 
   getUpdatedUserPollDataEffect = createEffect(() =>
     this.actions$.pipe(
-      ofType(AuthActions.getUpdatedUserPollData),
+      ofType(AuthActions.getUpdatedUsersPollData),
       mergeMap(() =>
         this.authService.getUpdatedUserPollData().pipe(
-          map((updatedUserData) =>
-            AuthActions.getUpdatedUserPollDataSuccess({ updatedUserData })
+          map((updatedUsersData) =>
+            AuthActions.getUpdatedUsersPollDataSuccess({ updatedUsersData })
           ),
           catchError((err) => {
             this.snackBar.open(err.message);
             return of(
-              AuthActions.getUpdatedUserPollDataFailure({ error: err.message })
+              AuthActions.getUpdatedUsersPollDataFailure({ error: err.message })
             );
           })
         )

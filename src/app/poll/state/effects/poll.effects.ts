@@ -1,19 +1,18 @@
 import { Injectable } from "@angular/core";
-import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { QuestionService } from "../../services/question/question.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { catchError, map, mergeMap, of, tap } from "rxjs";
-import * as PollActions from "../actions/poll.actions";
 import * as AuthActions from "src/app/auth/state/actions/auth.actions";
+import { QuestionService } from "../../services/question/question.service";
+import * as PollActions from "../actions/poll.actions";
 import { Router } from "@angular/router";
-import { AuthService } from "src/app/auth/services/auth/auth.service";
 
 @Injectable()
 export class PollEffects {
   constructor(
     private actions$: Actions,
     private questionService: QuestionService,
-    private authService: AuthService,
+    private router: Router,
     private snackBar: MatSnackBar
   ) {}
 
@@ -26,7 +25,11 @@ export class PollEffects {
 
   getQuestionsEffect = createEffect(() =>
     this.actions$.pipe(
-      ofType(PollActions.getQuestions, PollActions.saveQuestionAnswerSuccess),
+      ofType(
+        PollActions.getQuestions,
+        PollActions.saveQuestionAnswerSuccess,
+        PollActions.addQuestionSuccess
+      ),
 
       mergeMap(() =>
         this.questionService.getAllQuestions().pipe(
@@ -85,10 +88,36 @@ export class PollEffects {
     )
   );
 
-  updateUserPollDataEffect = createEffect(() =>
+  addQuestionEffect = createEffect(() =>
     this.actions$.pipe(
-      ofType(PollActions.saveQuestionAnswerSuccess),
-      mergeMap(() => of(AuthActions.getUpdatedUserPollData()))
+      ofType(PollActions.addQuestion),
+      mergeMap(({ authorId, optionOneText, optionTwoText }) =>
+        this.questionService
+          .createNewQuestion(optionOneText, optionTwoText, authorId)
+          .pipe(
+            map(() => {
+              return PollActions.addQuestionSuccess();
+            }),
+            tap(() => {
+              this.router.navigate(["/home"]);
+              this.snackBar.open("Question added successfully");
+            }),
+            catchError((err) => {
+              this.snackBar.open(err.message);
+              return of(PollActions.addQuestionFailure({ error: err.message }));
+            })
+          )
+      )
+    )
+  );
+
+  updateUsersPollDataEffect = createEffect(() =>
+    this.actions$.pipe(
+      ofType(
+        PollActions.saveQuestionAnswerSuccess,
+        PollActions.addQuestionSuccess
+      ),
+      mergeMap(() => of(AuthActions.getUpdatedUsersPollData()))
     )
   );
 }

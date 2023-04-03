@@ -69,21 +69,24 @@ export const reducer = createReducer(
     isLoading: false,
     error,
   })),
-  on(AuthActions.getUpdatedUserPollData, (state) => ({
+  on(AuthActions.getUpdatedUsersPollData, (state) => ({
     ...state,
     isLoading: true,
   })),
 
   on(
-    AuthActions.getUpdatedUserPollDataSuccess,
-    (state, { updatedUserData }) => ({
+    AuthActions.getUpdatedUsersPollDataSuccess,
+    (state, { updatedUsersData }) => ({
       ...state,
       isLoading: false,
-      user: updatedUserData,
+      allUsers: updatedUsersData,
+      user: updatedUsersData.find(
+        (updatedUser) => updatedUser.id == state.user?.id
+      ) as User,
       error: null,
     })
   ),
-  on(AuthActions.getUpdatedUserPollDataFailure, (state, { error }) => ({
+  on(AuthActions.getUpdatedUsersPollDataFailure, (state, { error }) => ({
     ...state,
     isLoading: false,
     error,

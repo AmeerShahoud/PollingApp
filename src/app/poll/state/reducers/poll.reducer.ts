@@ -56,5 +56,19 @@ export const reducer = createReducer(
     ...state,
     isLoading: false,
     error,
+  })),
+  on(PollActions.addQuestion, (state) => ({
+    ...state,
+    isLoading: true,
+  })),
+  on(PollActions.addQuestionSuccess, (state) => ({
+    ...state,
+    isLoading: false,
+    error: null,
+  })),
+  on(PollActions.addQuestionFailure, (state, { error }) => ({
+    ...state,
+    isLoading: false,
+    error,
   }))
 );

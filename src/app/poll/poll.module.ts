@@ -17,9 +17,13 @@ import { QuestionVoteComponent } from './components/question-vote/question-vote.
 import { QuestionStatisticsComponent } from './components/question-statistics/question-statistics.component';
 import { AnswerStatisticsComponent } from './components/answer-statistics/answer-statistics.component';
 import { LeaderBoardPageComponent } from './pages/leader-board-page/leader-board-page.component';
+import { ScoreListComponent } from './components/score-list/score-list.component';
+import { ScoreListItemComponent } from './components/score-list-item/score-list-item.component';
+import { NewQuestionPageComponent } from './pages/new-question-page/new-question-page.component';
+import { CreateNewQuestionComponent } from './components/create-new-question/create-new-question.component';
 
 @NgModule({
-  declarations: [HomePageComponent, QuestionListComponent, QuestionListItemComponent, QuestionPageComponent, QuestionVoteComponent, QuestionStatisticsComponent, AnswerStatisticsComponent, LeaderBoardPageComponent],
+  declarations: [HomePageComponent, QuestionListComponent, QuestionListItemComponent, QuestionPageComponent, QuestionVoteComponent, QuestionStatisticsComponent, AnswerStatisticsComponent, LeaderBoardPageComponent, ScoreListComponent, ScoreListItemComponent, NewQuestionPageComponent, CreateNewQuestionComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

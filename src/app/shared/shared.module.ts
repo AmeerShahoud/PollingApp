@@ -7,6 +7,7 @@ import { MaterialModule } from "../material/material.module";
 import { ImgPlaceholderDirective } from "./directives/img-placeholder.directive";
 import { AvatarAlbumComponent } from "./components/avatar-album/avatar-album.component";
 import { AutoFocusDirective } from "./directives/auto-focus.directive";
+import { NotFoundPageComponent } from './pages/not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AutoFocusDirective } from "./directives/auto-focus.directive";
     ImgPlaceholderDirective,
     AvatarAlbumComponent,
     AutoFocusDirective,
+    NotFoundPageComponent,
   ],
   imports: [CommonModule, MaterialModule, RouterModule],
   exports: [

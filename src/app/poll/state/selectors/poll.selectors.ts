@@ -69,19 +69,21 @@ export const selectIsSelectedQuestionAnswered = createSelector(
 export const selectUsersScores = createSelector(
   AuthSelectors.selectAllUsers,
   (users) => {
-    return users.map((user) => {
-      const _totalQuestions = user.questions.length;
-      let _totalAnswers = 0;
-      for (let i in user.answers) _totalAnswers++;
-      return {
-        userId: user.id,
-        userName: user.name,
-        avatarUrl: user.avatarURL,
-        totalCreatedQuestions: _totalQuestions,
-        totalAnsweredQuestions: _totalAnswers,
-        totalScore: _totalAnswers + _totalQuestions,
-      } as UserScore;
-    });
+    return users
+      .map((user) => {
+        const _totalQuestions = user.questions.length;
+        let _totalAnswers = 0;
+        for (let i in user.answers) _totalAnswers++;
+        return {
+          userId: user.id,
+          userName: user.name,
+          avatarUrl: user.avatarURL,
+          totalCreatedQuestions: _totalQuestions,
+          totalAnsweredQuestions: _totalAnswers,
+          totalScore: _totalAnswers + _totalQuestions,
+        } as UserScore;
+      })
+      .sort((scoreOne, scoreTwo) => scoreTwo.totalScore - scoreOne.totalScore);
   }
 );
 
