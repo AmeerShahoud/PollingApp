@@ -10,6 +10,8 @@
         <ng-container
           *ngIf="IsSelectedQuestionAnswered$ | async; else voteQuestion"
           ><app-question-statistics
+            [question]="(selectedAuthorQuestion$ | async)!"
+            [user]="user"
             class="col-lg-8 col-md-10 col-sm-12"
           ></app-question-statistics
         ></ng-container>
@@ -18,6 +20,7 @@
             *ngIf="selectedAuthorQuestion$ | async as selectedAuthorQuestion"
             ><app-question-vote
               [question]="selectedAuthorQuestion"
+              [user]="user"
               class="col-lg-8 col-md-10 col-sm-12"
             ></app-question-vote></ng-container
         ></ng-template>

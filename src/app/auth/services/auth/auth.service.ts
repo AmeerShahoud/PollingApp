@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { Subject, from, map, of, switchMap, takeUntil, throwError } from "rxjs";
 import * as db from "../../../db/_DATA.js";
-import { User, UserPollData } from "../../models/user.js";
+import { User } from "../../models/user.js";
 import * as AuthSelectors from "../../state/selectors/auth.selectors";
 
 type UsersData = { [userId: string]: User };
@@ -58,7 +58,7 @@ export class AuthService implements OnDestroy {
     );
   }
 
-  updateUserPollData = () => {
+  getUpdatedUserPollData = () => {
     return this.getUserById(this._userId);
   };
 

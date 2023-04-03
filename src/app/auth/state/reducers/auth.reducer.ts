@@ -69,18 +69,21 @@ export const reducer = createReducer(
     isLoading: false,
     error,
   })),
-  on(AuthActions.updateUserPollData, (state) => ({
+  on(AuthActions.getUpdatedUserPollData, (state) => ({
     ...state,
     isLoading: true,
   })),
 
-  on(AuthActions.updateUserPollDataSuccess, (state, { updatedUserData }) => ({
-    ...state,
-    isLoading: false,
-    user: updatedUserData,
-    error: null,
-  })),
-  on(AuthActions.updateUserPollDataFailure, (state, { error }) => ({
+  on(
+    AuthActions.getUpdatedUserPollDataSuccess,
+    (state, { updatedUserData }) => ({
+      ...state,
+      isLoading: false,
+      user: updatedUserData,
+      error: null,
+    })
+  ),
+  on(AuthActions.getUpdatedUserPollDataFailure, (state, { error }) => ({
     ...state,
     isLoading: false,
     error,

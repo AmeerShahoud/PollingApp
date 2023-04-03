@@ -1,7 +1,7 @@
 <div class="shadow rounded overflow-hidden">
   <h2
-    style="background-color: #f1f1f1; font-size: 1.3rem; font-weight: bold"
-    class="heading p-3 text-start mb-0"
+    style="font-size: 1.3rem; font-weight: bold"
+    class="heading mat-bg-accent p-3 text-start mb-0"
   >
     <ng-container
       *ngIf="(user$ | async)?.id == authorQuestion.author.id; else notAuthor"
@@ -15,7 +15,6 @@
         style="max-width: 100%"
         appImgPlaceholder
         [src]="authorQuestion.author.avatarURL"
-        alt=""
       />
     </div>
     <div class="question-details col-8 text-start">

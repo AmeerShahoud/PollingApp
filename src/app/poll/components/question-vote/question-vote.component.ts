@@ -1,33 +1,25 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
-import { AuthorQuestion } from "../../models/author-question";
-import * as AuthSelectors from "src/app/auth/state/selectors/auth.selectors";
-import { Store } from "@ngrx/store";
 import { FormControl, Validators } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import * as PollActions from "../../state/actions/poll.actions";
-import { Subject, takeUntil } from "rxjs";
+import { Store } from "@ngrx/store";
+import { Subject } from "rxjs";
 import { User } from "src/app/auth/models/user";
+import { AuthorQuestion } from "../../models/author-question";
+import * as PollActions from "../../state/actions/poll.actions";
 
 @Component({
   selector: "app-question-vote",
   templateUrl: "./question-vote.component.html",
   styleUrls: ["./question-vote.component.css"],
 })
-export class QuestionVoteComponent implements OnInit, OnDestroy {
+export class QuestionVoteComponent implements OnInit {
   @Input("question") authorQuestion!: AuthorQuestion;
-  user!: User | null;
+  @Input("user") user!: User | null;
   answer = new FormControl("", [Validators.required]);
-
-  private destroySubscriptions = new Subject();
 
   constructor(private store: Store, private snackBar: MatSnackBar) {}
 
-  ngOnInit(): void {
-    this.store
-      .select(AuthSelectors.selectUser)
-      .pipe(takeUntil(this.destroySubscriptions))
-      .subscribe((user) => (this.user = user));
-  }
+  ngOnInit(): void {}
 
   onSave() {
     if (this.answer.invalid) {
@@ -43,9 +35,5 @@ export class QuestionVoteComponent implements OnInit, OnDestroy {
         })
       );
     }
-  }
-
-  ngOnDestroy(): void {
-    this.destroySubscriptions.complete();
   }
 }

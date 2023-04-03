@@ -85,10 +85,10 @@ export class PollEffects {
     )
   );
 
-  updateUserAnswersEffect = createEffect(() =>
+  updateUserPollDataEffect = createEffect(() =>
     this.actions$.pipe(
       ofType(PollActions.saveQuestionAnswerSuccess),
-      mergeMap(() => of(AuthActions.updateUserPollData()))
+      mergeMap(() => of(AuthActions.getUpdatedUserPollData()))
     )
   );
 }

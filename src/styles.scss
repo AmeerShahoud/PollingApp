@@ -1,15 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
-@use '@angular/material' as mat;
-
-@include mat.core();
+:root {
+  --mat-primary: #3f51b5;
+  --mat-accent: #ff4081;
+  --mat-warn: #f44336;
+}
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-$primary: mat-color($my-primary);
-  $accent: mat-color($my-accent);
-  $warn: mat-color($my-warn);
 
-::root {
-    --primary: 
+.mat-bg-primary {
+  background-color: var(--mat-primary);
+  color: white;
 }
+
+.mat-bg-accent {
+  background-color: var(--mat-accent);
+  color: white;
+}
+
+.mat-bg-warn {
+  background-color: var(--mat-warn);
+  color: white;
+}
+
+

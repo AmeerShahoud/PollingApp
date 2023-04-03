@@ -15,9 +15,11 @@ import { QuestionListItemComponent } from './components/question-list-item/quest
 import { QuestionPageComponent } from './pages/question-page/question-page.component';
 import { QuestionVoteComponent } from './components/question-vote/question-vote.component';
 import { QuestionStatisticsComponent } from './components/question-statistics/question-statistics.component';
+import { AnswerStatisticsComponent } from './components/answer-statistics/answer-statistics.component';
+import { LeaderBoardPageComponent } from './pages/leader-board-page/leader-board-page.component';
 
 @NgModule({
-  declarations: [HomePageComponent, QuestionListComponent, QuestionListItemComponent, QuestionPageComponent, QuestionVoteComponent, QuestionStatisticsComponent],
+  declarations: [HomePageComponent, QuestionListComponent, QuestionListItemComponent, QuestionPageComponent, QuestionVoteComponent, QuestionStatisticsComponent, AnswerStatisticsComponent, LeaderBoardPageComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
